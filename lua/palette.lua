@@ -47,7 +47,7 @@ local colors = {
 }
 
 colors.string     = colors.green
-colors.link       = colors.blue
+colors.link       = colors.cyan
 colors.comments   = '#546E7A'
 
 

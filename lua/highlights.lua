@@ -398,7 +398,7 @@ theme.loadTreeSitter = function ()
 		-- TSStrike          = {fg = colors.fg,, strikethrough = true}, -- For strikethrough text.
 		TSTitle              = {fg = colors.title, bold = true}, -- Text that is part of a title.
 		TSLiteral            = {fg = colors.fg}, -- Literal text.
-		TSURI                = {fg = colors.link}, -- Any URI like a link or email.
+		TSURI                = {fg = colors.link, bold = true}, -- Any URI like a link or email.
 		TSMath               = {fg = colors.blue}, -- Math environments like LaTeX's `$ ... $`
 		-- TSEnvironment
 		-- TSEnvironmentName
