@@ -325,99 +325,99 @@ theme.loadTreeSitter = function ()
 	-- TreeSitter highlight groups
 	local treesitter = {
 		-- Misc
-		TSComment            = {link = "Comment"}, -- For comment blocks.
+		["@Comment"]               = {link = "Comment"}, -- For comment blocks.
 		-- TSdebug
-		TSDefine             = {fg = colors.gray}, -- For syntax/parser errors.
-		TSError              = {fg = colors.error}, -- For syntax/parser errors.
-		TSNone               = {fg = colors.fg},
-		TSPreProc            = {fg = colors.gray}, -- Preprocessor #if, #else, #endif, etc.
-		TSPunctDelimiter     = {fg = colors.fg}, -- For delimiters ie: `.`
-		TSPunctBracket       = {fg = colors.fg}, -- For brackets and parens.
-		TSPunctSpecial       = {fg = colors.fg}, -- For special punctutation that does not fall in the catagories before.
+		["@Define"]                = {fg = colors.gray}, -- For syntax/parser errors.
+		["@Error"]                 = {fg = colors.error}, -- For syntax/parser errors.
+		["@none"]                  = {fg = colors.fg},
+		["@preproc"]               = {fg = colors.gray}, -- Preprocessor #if, #else, #endif, etc.
+		["@punctuation.delimiter"] = {fg = colors.fg}, -- For delimiters ie: `.`
+		["@punctuation.bracket"]   = {fg = colors.fg}, -- For brackets and parens.
+		["@punctuation.special"]   = {fg = colors.fg}, -- For special punctutation that does not fall in the catagories before.
 
 		-- Constants
-		TSConstant           = {link = "Constant"}, -- For constants
-		TSConstBuiltin       = {fg = colors.fg}, -- For constant that are built in the language: `nil` in Lua.
-		TSConstMacro         = {fg = colors.pink1}, -- For constants that are defined by macros: `NULL` in C.
-		-- TSString             = {fg = colors.green}, -- For strings.
-		TSStringRegex        = {fg = colors.yellow}, -- For regexes.
-		TSStringEscape       = {fg = colors.green}, -- For escape characters within a string.
-		TSStringSpecial      = {fg = colors.cyan}, -- Strings with special meaning that don't fit into the previous categories.
+		["@constant"]              = {link = "Constant"}, -- For constants
+		["@const.builtin"]         = {fg = colors.fg}, -- For constant that are built in the language: `nil` in Lua.
+		["@const.macro"]           = {fg = colors.pink1}, -- For constants that are defined by macros: `NULL` in C.
+		-- TSString                = {fg = colors.green}, -- For strings.
+		["@string.regex"]          = {fg = colors.yellow}, -- For regexes.
+		["@string.escape"]         = {fg = colors.green}, -- For escape characters within a string.
+		["@string.special"]        = {fg = colors.cyan}, -- Strings with special meaning that don't fit into the previous categories.
 
-		TSCharacter          = {fg = colors.green}, -- For characters.
+		["@character"]             = {fg = colors.green}, -- For characters.
 
 		-- TSCharacterSpecial
-		-- TSNumber             = {fg = colors.orange}, -- For all numbers
-		TSBoolean            = {link = "Boolean"}, -- For booleans.
-		-- TSFloat              = {fg = colors.orange}, -- For floats.
+		-- TSNumber                = {fg = colors.orange}, -- For all numbers
+		["@boolean"]               = {link = "Boolean"}, -- For booleans.
+		-- TSFloat                 = {fg = colors.orange}, -- For floats.
 
 		-- Functions
-		TSFunction           = {link = "Function"}, -- For fuction (calls and definitions).
-		TSFuncBuiltin        = {link = "Function"}, -- For builtin functions: `table.insert` in Lua.
+		["@function"]              = {link = "Function"}, -- For fuction (calls and definitions).
+		["@function.builtin"]      = {link = "Function"}, -- For builtin functions: `table.insert` in Lua.
 		-- TSFunctionCall
-		TSFuncMacro          = {link = "Function"}, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-		TSParameter          = {fg = colors.fg}, -- For parameters of a function.
+		["@function.macro"]        = {link = "Function"}, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
+		["@parameter"]             = {fg = colors.fg}, -- For parameters of a function.
 
-		TSMethod             = {link = "Function"}, -- For method calls and definitions.
+		["@method"]                = {link = "Function"}, -- For method calls and definitions.
 		-- TSMethodCall
-		TSField              = {fg = colors.fg}, -- For fields.
-		TSProperty           = {fg = colors.fg}, -- Same as `TSField`,accesing for struct members in C.
+		["@field"]                 = {fg = colors.fg}, -- For fields.
+		["@property"]              = {fg = colors.fg}, -- Same as `TSField`,accesing for struct members in C.
 
-		TSConstructor        = {fg = colors.fg}, -- For constructor calls and definitions: `= {}` in Lua, and Java constructors.
+		["@constructor"]           = {fg = colors.fg}, -- For constructor calls and definitions: `= {}` in Lua, and Java constructors.
 
 		-- Keywords
-		-- TSConditional        = {fg = colors.yellow, bold = true}, -- For keywords related to conditionnals.
-		-- TSRepeat             = {fg = colors.yellow, bold = true}, -- For keywords related to loops.
-		-- TSLabel              = {link = "Label"}, -- For labels: `label:` in C and `:label:` in Lua.
-		-- TSKeyword            = {fg = colors.yellow, bold = true}, -- For keywords that don't fall in previous categories.
-		TSKeywordFunction    = {fg = colors.yellow, bold = true}, -- For keywords used to define a fuction.
-		TSKeywordOperator    = {fg = colors.yellow, bold = true}, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
-		TSKeywordReturn      = {fg = colors.yellow, bold = true}, -- return keyword
-		-- TSOperator           = {fg = colors.fg}, -- For any operator: `+`, but also `->` and `*` in C.
-		TSException          = {link = "Exception"}, -- For exception related keywords.
-		-- TSInclude            = {fg = colors.yellow, bold = true}, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-		TSStorageClass       = {fg = colors.pink1, bold = true}, -- Keywords that affect how a variable is stored: static, comptime, extern, etc
+		-- TSConditional           = {fg = colors.yellow, bold = true}, -- For keywords related to conditionnals.
+		-- TSRepeat                = {fg = colors.yellow, bold = true}, -- For keywords related to loops.
+		-- TSLabel                 = {link = "Label"}, -- For labels: `label:` in C and `:label:` in Lua.
+		["@keyword"]               = {fg = colors.yellow, bold = true}, -- For keywords that don't fall in previous categories.
+		-- TSKeywordFunction       = {fg = colors.yellow, bold = true}, -- For keywords used to define a fuction.
+		-- TSKeywordOperator       = {fg = colors.yellow, bold = true}, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
+		-- TSKeywordReturn         = {fg = colors.yellow, bold = true}, -- return keyword
+		-- TSOperator              = {fg = colors.fg}, -- For any operator: `+`, but also `->` and `*` in C.
+		["@exception"]             = {link = "Exception"}, -- For exception related keywords.
+		-- TSInclude               = {fg = colors.yellow, bold = true}, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+		["@storageClass"]          = {fg = colors.pink1, bold = true}, -- Keywords that affect how a variable is stored: static, comptime, extern, etc
 
-		--TSType               = {fg = colors.yellow, bold = true}, -- For types.
-		TSTypeBuiltin        = {fg = colors.yellow, bold = true}, -- For builtin types.
+		--TSType                   = {fg = colors.yellow, bold = true}, -- For types.
+		["@type.builtin"]          = {fg = colors.yellow, bold = true}, -- for builtin types.
 		-- TSTypeDefinition
 		-- TSTypeQualifier
-		TSNamespace          = {fg = colors.fg}, -- For identifiers referring to modules and namespaces.
-		TSSymbol             = {fg = colors.fg}, -- For identifiers referring to symbols or atoms.
-		TSAttribute          = {fg = colors.fg}, -- (unstable) TODO: docs
+		["@namespace"]             = {fg = colors.fg}, -- For identifiers referring to modules and namespaces.
+		["@symbol"]                = {fg = colors.fg}, -- For identifiers referring to symbols or atoms.
+		["@attribute"]             = {fg = colors.fg}, -- (unstable) TODO: docs
 
 		-- Variables
-		TSVariable           = {link = "Identifier"}, -- Any variable name that does not have another highlight.
-		TSVariableBuiltin    = {link = "Identifier"}, -- Variable names that are defined by the languages, like `this` or `self`.
+		["@variable"]              = {link = "Identifier"}, -- Any variable name that does not have another highlight.
+		["@variable.builtin"]      = {link = "Identifier"}, -- Variable names that are defined by the languages, like `this` or `self`.
 
 		-- Text
-		TSText               = {fg = colors.fg}, -- For strings considered text in a markup language.
-		TSStrong             = {fg = colors.fg, bold = true}, -- Text to be represented in bold.
-		TSEmphasis           = {fg = colors.fg, italic = true}, -- For text to be represented with emphasis.
-		TSUnderline          = {fg = colors.fg, underline = true}, -- For text to be represented with an underline.
-		TSStrike             = {fg = colors.fg, strikethrough = true}, -- For strikethrough text.
-		TSTitle              = {fg = colors.title, bold = true}, -- Text that is part of a title.
-		TSLiteral            = {fg = colors.fg}, -- Literal text.
-		TSURI                = {fg = colors.link, bold = true}, -- Any URI like a link or email.
-		TSMath               = {fg = colors.blue}, -- Math environments like LaTeX's `$ ... $`
+		["@text"]                  = {fg = colors.fg}, -- For strings considered text in a markup language.
+		["@text.strong"]           = {fg = colors.fg, bold = true}, -- Text to be represented in bold.
+		["@text.emphasis"]         = {fg = colors.fg, italic = true}, -- For text to be represented with emphasis.
+		["@text.underline"]        = {fg = colors.fg, underline = true}, -- For text to be represented with an underline.
+		["@text.strike"]           = {fg = colors.fg, strikethrough = true}, -- For strikethrough text.
+		["@text.title"]            = {fg = colors.title, bold = true}, -- Text that is part of a title.
+		["@text.literal"]          = {fg = colors.fg}, -- Literal text.
+		["@text.uri"]              = {fg = colors.link, bold = true}, -- any uri like a link or email.
+		["@math"]                  = {fg = colors.blue}, -- Math environments like LaTeX's `$ ... $`
 		-- TSEnvironment
 		-- TSEnvironmentName
-		TSTextReference      = {fg = colors.yellow},
+		["@textReference"]         = {fg = colors.yellow},
 
 		-- TSNote
 		-- TSWarning
-		TSDanger             = {fg = colors.error}, -- Text representation of a danger note.
+		["@text.danger"]           = {fg = colors.error}, -- Text representation of a danger note.
 		-- TSTodo
 
 		-- Tags
-		TSTag                = {fg = colors.pink1}, -- Tags like html tag names.
-		TSTagDelimiter       = {fg = colors.fg}, -- Tag delimiter like `<` `>` `/`
-		TSTagAttribute       = {fg = colors.fg}, -- HTML tag attributes.
+		["@tag"]                   = {fg = colors.pink1}, -- Tags like html tag names.
+		["@tag.delimiter"]         = {fg = colors.fg}, -- Tag delimiter like `<` `>` `/`
+		["@tag.attribute"]         = {fg = colors.fg}, -- HTML tag attributes.
 
-		TSParameterReference = {fg = colors.paleblue}, -- For references to parameters of a function.
+		["@parameter.reference"]   = {fg = colors.paleblue}, -- For references to parameters of a function.
 
 
-		jsonTSLabel          = {fg = colors.fg, bold = false},
+		["@label.json"]            = {fg = colors.fg, bold = false},
 	}
 
 	return treesitter
