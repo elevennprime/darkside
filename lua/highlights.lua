@@ -318,77 +318,131 @@ theme.loadSyntax = {
 
 
 -- TreeSitter highlight groups
+-- See `https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md`
 theme.TreeSitter = {
-	["@text"]                  = {fg = colors.fg}, -- For strings considered text in a markup language.
-	["@text.literal"]          = {link = "@text"},
-	["@text.emphasis"]         = {italic = true}, -- For text to be represented with emphasis.
-	["@text.math"]             = {fg = colors.blue}, -- Math environments like LaTeX's `$ ... $`
-	["@text.reference"]        = {fg = colors.yellow},
-	["@text.strike"]           = {strikethrough = true}, -- For strikethrough text.
-	["@text.strong"]           = {bold = true}, -- Text to be represented in bold.
-	["@text.title"]            = {fg = colors.title, bold = true}, -- Text that is part of a title.
-	["@text.todo"]             = {link = "Todo"},
-	["@text.underline"]        = {underline = true}, -- For text to be represented with an underline.
-	["@text.environment"]      = {fg = colors.yellow, bold = true},
-	["@text.environment.name"] = {fg = colors.fg},
-	["@text.uri"]              = {fg = colors.link, bold = true}, -- any uri like a link or email.
+	-- Misc
+	["@comment"]               = {link = "Comment"}, -- line and block comments
+	["@comment.documentation"] = {link = "@comment"}, -- comments documenting code
+	["@error"]                 = {fg = colors.error}, -- syntax/parser errors.
+	["@none"]                  = {fg = colors.fg}, -- completely disable the highlight
+	["@preproc"]               = {fg = colors.gray}, -- preprocessor #if, #else, #endif, etc.
+	["@define"]                = {fg = colors.gray}, -- preprocessor definition directives
+	["@operator"]              = {link = "Operator"},  -- symbolic operators (e.g. `+` / `*`)
 
-	["@comment"]               = {link = "Comment"}, -- For comment blocks.
-	["@punctuation"]           = {fg = colors.fg}, -- For delimiters ie: `.`
+	-- Punctuation
+	["@punctuation"]           = {fg = colors.fg}, -- delimiters
+	["@punctuation.delimiter"] = {link = "@punctuation"}, -- delimiters (e.g. `;` / `.` / `,`)
+	["@punctuation.bracket"]   = {link = "@punctuation"}, -- brackets (e.g. `()` / `{}` / `[]`)
+	["@punctuation.special"]   = {fg = colors.pink1}, -- special symbols (e.g. `{}` in string interpolation)
 
-	["@constant"]              = {link = "Constant"}, -- For constants
-	["@const.builtin"]         = {fg = colors.fg}, -- For constant that are built in the language: `nil` in Lua.
-	["@const.macro"]           = {fg = colors.pink1}, -- For constants that are defined by macros: `NULL` in C.
-	["@define"]                = {fg = colors.gray}, -- For syntax/parser errors.
-	["@macro"]                 = {link = "Macro"},
-	["@string"]                = {fg = colors.green}, -- For strings.
-	["@string.regex"]          = {fg = colors.yellow}, -- For regexes.
-	["@string.escape"]         = {fg = colors.green}, -- For escape characters within a string.
-	["@string.special"]        = {fg = colors.cyan}, -- Strings with special meaning that don't fit into the previous categories.
-	["@character"]             = {fg = colors.green}, -- For characters.
-	["@character.special"]     = {fg = colors.green}, -- For characters.
-	["@number"]                = {fg = colors.orange}, -- For all numbers
-	["@boolean"]               = {link = "Boolean"},
-	["@float"]                 = {fg = colors.orange},
+	-- Literals
+	["@string"]                = {fg = colors.green}, -- string literals
+	["@string.regex"]          = {fg = colors.yellow}, --  regular expressions
+	["@string.documentation"]  = {link = "@string"}, -- string documenting code (e.g. Python docstrings)
+	["@string.escape"]         = {fg = colors.green}, -- escape sequences
+	["@string.special"]        = {fg = colors.cyan}, -- other special strings (e.g. dates)
+
+	["@character"]             = {fg = colors.green}, -- character literals
+	["@character.special"]     = {fg = colors.green}, -- special characters (e.g. wildcards)
+
+	["@boolean"]               = {link = "Boolean"}, -- boolean literals
+	["@number"]                = {fg = colors.orange}, -- numeric literals
+	["@float"]                 = {fg = colors.orange}, -- floating-point number literals
+
+	-- Functions
+	["@function"]              = {link = "Function"}, -- function definitions
+	["@function.builtin"]      = {link = "@function"}, -- built-in functions
+	["@function.call"]         = {link = "@function"}, -- function calls
+	["@function.macro"]        = {link = "@function"}, -- preprocessor macros
+
+	["@method"]                = {link = "@function"}, -- method definitions
+	["@method.call"]           = {link = "@function"}, -- method calls
+
+	["@constructor"]           = {fg = colors.fg}, -- constructor calls and definitions
+	["@parameter"]             = {fg = colors.fg}, -- parameters of a function
+	["@parameter.reference"]   = {fg = colors.paleblue}, -- references to parameters of a function.
+
+	-- Keywords
+	["@keyword"]               = {fg = colors.yellow, bold = true}, -- various keywords
+	["@keyword.coroutine"]     = {link = "@keyword"}, -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
+	["@keyword.function"]      = {link = "@keyword"}, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
+	["@keyword.operator"]      = {link = "@keyword"}, -- operators that are English words (e.g. `and` / `or`)
+	["@keyword.return"]        = {link = "@keyword"}, -- keywords like `return` and `yield`
+
+	["@conditional"]           = {fg = colors.yellow, bold = true}, -- keywords related to conditionals (e.g. `if` / `else`)
+	["@conditional.ternary"]   = {link = "@conditional"}, -- ternary operator (e.g. `?` / `:`)
+
+	["@repeat"]                = {fg = colors.yellow, bold = true}, -- keywords related to loops (e.g. `for` / `while`)
+	["@debug"]                 = {link = "Debug"}, -- keywords related to debugging
+	["@label"]                 = {link = "Label"}, -- GOTO and other labels (e.g. `label:` in C)
+	["@include"]               = {link = "Include"}, -- keywords for including modules (e.g. `import` / `from` in Python)
+	["@exception"]             = {link = "Exception"}, -- keywords related to exceptions (e.g. `throw` / `catch`)
 
 
-	["@function"]              = {link = "Function"}, -- For fuction (calls and definitions).
-	["@function.builtin"]      = {link = "Function"}, -- For builtin functions: `table.insert` in Lua.
-	["@function.macro"]        = {link = "Function"}, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-	["@parameter"]             = {fg = colors.fg}, -- For parameters of a function.
-	["@parameter.reference"]   = {fg = colors.paleblue}, -- For references to parameters of a function.
-	["@method"]                = {link = "Function"}, -- For method calls and definitions.
-	["@field"]                 = {fg = colors.fg}, -- For fields.
-	["@property"]              = {fg = colors.fg}, -- Same as `TSField`,accesing for struct members in C.
-	["@constructor"]           = {fg = colors.fg}, -- For constructor calls and definitions: `= {}` in Lua, and Java constructors.
 
-	["@conditional"]           = {fg = colors.yellow, bold = true}, -- For keywords related to conditionnals.
-	["@repeat"]                = {fg = colors.yellow, bold = true}, -- For keywords related to loops.
-	["@label"]                 = {link = "Label"}, -- For labels: `label:` in C and `:label:` in Lua.
-	["@label.json"]            = {bold = false},
-	["@operator"]              = {link = "Operator"},  -- For any operator: `+`, but also `->` and `*` in C.
-	["@keyword"]               = {fg = colors.yellow, bold = true}, -- For keywords that don't fall in previous categories.
-	["@exception"]             = {link = "Exception"}, -- For exception related keywords.
+	-- Types
+	["@type"]                  = {fg = colors.gray}, -- type or class definitions and annotations
+	["@type.builtin"]          = {link = "@type"}, -- built-in types
+	["@type.definition"]       = {fg = colors.fg}, -- type definitions (e.g. `typedef` in C)
+	["@type.qualifier"]        = {fg = colors.yellow, bold = true}, -- type qualifiers (e.g. `const`)
 
-	["@variable"]              = {link = "Identifier"}, -- Any variable name that does not have another highlight.
-	["@variable.builtin"]      = {link = "Identifier"}, -- Variable names that are defined by the languages, like `this` or `self`.
-	["@type"]                  = {fg = colors.yellow, bold = true}, -- For types.
-	["@type.builtin"]          = {fg = colors.yellow, bold = true}, -- for builtin types.
-	["@type.definition"]       = {fg = colors.fg}, -- for builtin types.
-	["@storageclass"]          = {fg = colors.pink1, bold = true}, -- Keywords that affect how a variable is stored: static, comptime, extern, etc
-	["@structure"]             = {link = "Structure"}, -- Structure: struct, union, enum, etc.
-	["@namespace"]             = {fg = colors.fg}, -- For identifiers referring to modules and namespaces.
+	["@storageclass"]          = {fg = colors.yellow, bold = true}, -- modifiers that affect storage in memory or life-time
+	["@attribute"]             = {fg = colors.fg}, -- attribute annotations (e.g. Python decorators)
+	["@field"]                 = {fg = colors.fg}, -- object and struct fields
+	["@property"]              = {fg = colors.fg}, -- similar to `@field`
+
+	-- identifiers
+	["@variable"]              = {link = "Identifier"}, -- various variable names
+	["@variable.builtin"]      = {link = "Identifier"}, -- built-in variable names (e.g. `this`)
+
+	["@constant"]              = {link = "Constant"}, -- constant identifiers
+	["@const.builtin"]         = {fg = colors.fg}, -- built-in constant values (e.g. `nil`)
+	["@const.macro"]           = {fg = colors.pink1}, -- constants defined by the preprocessor
+
+	["@namespace"]             = {fg = colors.fg}, -- modules or namespaces
+	["@symbol"]                = {fg = colors.fg}, -- symbols or atoms
+
+	-- Text
+	["@text"]                  = {fg = colors.fg}, -- non-structured text
+	["@text.strong"]           = {bold = true}, -- bold text
+	["@text.emphasis"]         = {italic = true}, -- text with emphasis
+	["@text.underline"]        = {underline = true}, -- underlined text
+	["@text.strike"]           = {strikethrough = true}, -- strike through text
+	["@text.title"]            = {fg = colors.title, bold = true}, -- text that is part of a title
+	["@text.quote"]            = {link = "@text"}, -- text quotations
+	["@text.uri"]              = {fg = colors.link, bold = true}, -- URIs (e.g. hyperlinks)
+	["@text.math"]             = {fg = colors.blue}, -- math environments (e.g. `$ ... $` in LaTeX)
+	["@text.environment"]      = {fg = colors.yellow, bold = true}, -- text environments of markup languages
+	["@text.environment.name"] = {fg = colors.fg}, -- text indicating the type of an environment
+	["@text.reference"]        = {fg = colors.fg, underline = true}, -- text references, footnotes, citations, etc.
+
+	["@text.literal"]          = {fg = colors.green}, -- literal or verbatim text (e.g., inline code)
+	["@text.literal.block"]    = {link = "@text"}, -- literal or verbatim text as a stand-alone block
+
+	["@text.todo"]             = {link = "Todo"}, -- todo notes
+    ["@text.note"]             = {link = "@text"}, -- info notes
+    ["@text.warning"]          = {link = "@text"}, -- warning notes
+    ["@text.danger"]           = {link = "@text"}, -- danger/error notes
+
+	["@text.diff.add"]         = {link = "DiffAdd"}, -- added text (for diff files)
+    ["@text.diff.delete"]      = {link = "DiffDelete"}, -- deleted text (for diff files)
+
+	-- Tags
+	["@tag"]                   = {fg = colors.pink1}, -- XML tag names
+	["@tag.delimiter"]         = {fg = colors.fg}, -- XML tag attributes
+	["@tag.attribute"]         = {fg = colors.fg}, -- XML tag delimiters
+
+	-- Conceal
+	["@conceal"]               = {fg = colors.fg}, -- for captures that are only used for concealing
+
+
+	-- Language specific:
+	-- latex
 	["@namespace.latex"]       = {fg = colors.yellow, bold = true}, -- For identifiers referring to modules and namespaces.
-	["@include"]               = {link = "Include"}, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-	["@preproc"]               = {fg = colors.gray}, -- Preprocessor #if, #else, #endif, etc.
-	["@debug"]                 = {link = "Debug"},
-	["@tag"]                   = {fg = colors.pink1}, -- Tags like html tag names.
-	["@tag.delimiter"]         = {fg = colors.fg}, -- Tag delimiter like `<` `>` `/`
-	["@tag.attribute"]         = {fg = colors.fg}, -- HTML tag attributes.
+	-- json
+	["@label.json"]            = {bold = false},
 
 
-	["@error"]                 = {fg = colors.error}, -- For syntax/parser errors.
-	["@none"]                  = {fg = colors.fg},
 }
 
 -- Lsp highlight groups
