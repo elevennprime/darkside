@@ -396,8 +396,8 @@ theme.TreeSitter = {
 	["@variable.builtin"]      = {link = "Identifier"}, -- built-in variable names (e.g. `this`)
 
 	["@constant"]              = {link = "Constant"}, -- constant identifiers
-	["@const.builtin"]         = {fg = colors.fg}, -- built-in constant values (e.g. `nil`)
-	["@const.macro"]           = {fg = colors.pink1}, -- constants defined by the preprocessor
+	["@constant.builtin"]      = {fg = colors.fg}, -- built-in constant values (e.g. `nil`)
+	["@constant.macro"]        = {fg = colors.pink1}, -- constants defined by the preprocessor
 
 	["@namespace"]             = {fg = colors.fg}, -- modules or namespaces
 	["@symbol"]                = {fg = colors.fg}, -- symbols or atoms
