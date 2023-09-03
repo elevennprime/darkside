@@ -197,11 +197,11 @@ theme.loadSyntax = {
 	PreProc             = {fg = colors.gray},
 	Include             = {fg = colors.pink1},
 	Define              = {fg = colors.gray},
-	Macro               = {fg = colors.gray},
+	Macro               = {fg = colors.fg},
 	PreCondit           = {fg = colors.gray},
-	Type                = {fg = colors.fg},
+	Type                = {fg = colors.blue1},
 	StorageClass        = {fg = colors.cyan},
-	Structure           = {fg = colors.yellow, bold = true},
+	Structure           = {fg = colors.blue1},
 	Typedef             = {fg = colors.red},
 
 	--[[
@@ -381,7 +381,7 @@ theme.TreeSitter = {
 
 
 	-- Types
-	["@type"]                  = {fg = colors.gray}, -- type or class definitions and annotations
+	["@type"]                  = {link = "Type"}, -- type or class definitions and annotations
 	["@type.builtin"]          = {link = "@type"}, -- built-in types
 	["@type.definition"]       = {fg = colors.fg}, -- type definitions (e.g. `typedef` in C)
 	["@type.qualifier"]        = {fg = colors.yellow, bold = true}, -- type qualifiers (e.g. `const`)
