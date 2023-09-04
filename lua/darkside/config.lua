@@ -1,7 +1,6 @@
 local Config = {}
 
 local defaults = {
-
 	contrast = {
 		-- Enable contrast for sidebar-like windows (for example Nvim-Tree)
 		sidebars = false,
@@ -57,13 +56,28 @@ local defaults = {
 
 	-- Load parts of the theme asyncronously for faster startup
 	async_loading = true,
+
+
+	modules = {
+		diagnostic = true,
+		lsp_semantic = true,
+		lsp = true,
+		treesitter = true,
+	},
 }
 
 Config.options = {}
 
-Config.setup = function (options)
+Config.setup = function(options)
 	Config.options = vim.tbl_deep_extend("force", {}, defaults, options or {})
 end
+
+Config.module_names = {
+	"diagnostic",
+	"lsp_semantic",
+	"lsp",
+	"treesitter",
+}
 
 Config.setup()
 

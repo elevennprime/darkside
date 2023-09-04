@@ -1,7 +1,7 @@
 -- This file is used to define
 -- the basic colors of the theme
 
-local config = require('config').options
+local config = require('darkside.config').options
 
 local colors = {
 	-- Dark colors
