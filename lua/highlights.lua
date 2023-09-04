@@ -256,9 +256,6 @@ theme.loadSyntax = {
 	healthSuccess       = {fg = colors.green},
 	healthWarning       = {fg = colors.yellow},
 
-	-- Line numbers for quickfix lists
-	qfLineNr            = {link = "QuickFixLine"},
-
 	-- nvim cmp
 	PmenuSel            = {fg = "NONE", bg = "#282C34"},
 	Pmenu               = {fg = colors.fg, bg = "#22252A"},
