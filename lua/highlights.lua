@@ -43,11 +43,10 @@ theme.loadEditor = function()
 
 		-- Substitute
 
-		LineNr           = {fg = colors.line_numbers, bold = true}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		LineNr           = {fg = colors.yellow}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		LineNrAbove      = {fg = colors.line_numbers}, -- Line number for when the relativenumber option is set, above teh cursor line.
 		LineNrBelow      = {fg = colors.line_numbers}, -- Line number for when the relativenumber option is set, below teh cursor line.
-		-- Like LineNr when 'cursorline' is set for the cursor line.
-		CursorLineNr     = {fg = colors.yellow, bold = true},
+		CursorLineNr     = {link = "LineNr"}, -- Like LineNr when 'cursorline' is set for the cursor line.
 		-- CursorLineSign
 		-- CursorLineFold
 		MatchParen       = {fg = colors.yellow, bold = true}, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
@@ -73,7 +72,7 @@ theme.loadEditor = function()
 		Question         = {fg = colors.green}, -- |hit-enter| prompt and yes/no questions
 		-- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
 		-- QuickFixLine     = {fg = colors.highlight, bg = colors.title, reverse = true},
-		QuickFixLine     = {fg = colors.fg},
+		QuickFixLine     = {bg = colors.highlight},
 
 		Search           = {fg = colors.title, bg = colors.selection, bold = true}, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 		SpecialKey       = {fg = colors.purple}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
@@ -346,7 +345,7 @@ theme.TreeSitter = {
 	["@character.special"]     = {fg = colors.green}, -- special characters (e.g. wildcards)
 
 	["@boolean"]               = {link = "Boolean"}, -- boolean literals
-	["@number"]                = {fg = colors.orange}, -- numeric literals
+	["@number"]                = {fg = colors.darkorange}, -- numeric literals
 	["@float"]                 = {fg = colors.orange}, -- floating-point number literals
 
 	-- Functions

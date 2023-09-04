@@ -9,7 +9,7 @@ local colors = {
 	darkgreen     = '#73c936',
 	darkyellow    = '#e9ad0c',
 	darkblue      = '#1e5098',
-	-- darkorange = '#e2795b',
+	darkorange    = '#e2795b',
 
 	-- Common colors
 	black         = '#000000',
@@ -33,13 +33,15 @@ local colors = {
 	bg_alt        = '#181818',
 	fg            = '#e4e4ef',
 	fg_alt        = '#9e9e9e',
-	selection     = '#464b5d',
+
+	selection     = '#484848',
+	highlight     = '#425b67',
+
+	disabled      = '#282828',
+
 	contrast      = '#1e272c',
 	active        = '#314549',
 	border        = '#37444c',
-	line_numbers  = '#37474f',
-	highlight     = '#425b67',
-	disabled      = '#282828',
 	accent        = '#009688',
 
 	none          =  'NONE',
@@ -48,6 +50,7 @@ local colors = {
 colors.string     = colors.green
 colors.link       = colors.cyan
 colors.comments   = '#546E7A'
+colors.line_numbers  = '#37474f'
 colors.error      = colors.red2
 colors.cursor     = colors.yellow
 colors.title      = '#eeffff'
