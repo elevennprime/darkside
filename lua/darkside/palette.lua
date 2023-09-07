@@ -49,7 +49,7 @@ local colors = {
 
 colors.string     = colors.green
 colors.link       = colors.cyan
-colors.comments   = '#546E7A'
+colors.comments   = '#6e6f70'
 colors.line_numbers  = '#37474f'
 colors.error      = colors.red2
 colors.cursor     = colors.yellow
