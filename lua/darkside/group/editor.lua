@@ -72,10 +72,10 @@ function M.get(palette, config)
 		Search           = {fg = palette.title, bg = palette.selection, bold = true}, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 		SpecialKey       = {fg = palette.purple}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
 
-		SpellBad         = {fg = palette.error, italic = true, undercurl = true}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-		SpellCap         = {fg = palette.blue, italic = true, undercurl = true}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-		SpellLocal       = {fg = palette.cyan, italic = true, undercurl = true}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-		SpellRare        = {fg = palette.purple, italic = true, undercurl = true}, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
+		SpellBad         = {fg = palette.error, undercurl = true}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+		SpellCap         = {fg = palette.blue, undercurl = true}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+		SpellLocal       = {fg = palette.cyan, undercurl = true}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+		SpellRare        = {fg = palette.purple, undercurl = true}, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
 
 		StatusLine       = {fg = palette.fg, bg = palette.bg_alt}, -- status line of current window
 		StatusLineNC     = {fg = palette.fg_alt, bg = palette.bg_alt}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
