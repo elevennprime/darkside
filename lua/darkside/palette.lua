@@ -14,7 +14,7 @@ local colors = {
 	-- Common colors
 	black         = '#000000',
 	white         = '#ffffff',
-	gray          = '#717cb4',
+	gray          = '#52494e',
 	red           = '#f43841',
 	red1          = '#fa2772',
 	red2          = '#ff4f58',
@@ -22,6 +22,7 @@ local colors = {
 	yellow        = '#ffdd33',
 	blue          = '#2a7bde',
 	blue1         = '#569CD6',
+	blue2         = '#96A6C8',
 	paleblue      = '#b0c9ff',
 	cyan          = '#33c7de',
 	purple        = '#c061cb',
@@ -48,7 +49,7 @@ local colors = {
 }
 
 colors.string     = colors.green
-colors.link       = colors.cyan
+colors.link       = colors.blue2
 colors.comments   = '#6e6f70'
 colors.line_numbers  = '#37474f'
 colors.error      = colors.red2
