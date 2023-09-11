@@ -30,8 +30,8 @@ function M.get(palette, config)
 		["@character.special"]     = {fg = palette.green}, -- special characters (e.g. wildcards)
 
 		["@boolean"]               = {link = "Boolean"}, -- boolean literals
-		["@number"]                = {fg = palette.darkorange}, -- numeric literals
-		["@float"]                 = {fg = palette.orange}, -- floating-point number literals
+		["@number"]                = {link = "Number"}, -- numeric literals
+		["@float"]                 = {link = "Float"}, -- floating-point number literals
 
 		-- Functions
 		["@function"]              = {link = "Function"}, -- function definitions
