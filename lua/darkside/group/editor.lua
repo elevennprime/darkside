@@ -59,10 +59,21 @@ function M.get(palette, config)
 		NormalFloat      = {fg = palette.fg, bg = palette.float}, -- normal text and background color for floating windows
 		NormalNC         = {fg = palette.fg, bg = palette.bg_nc}, -- normal text and background color
 
-		-- Pmenu
-		PmenuSel         = {fg = palette.contrast, bg = palette.accent}, -- Popup menu: selected item.
-		-- PmenuSbar
-		-- PmenuThumb
+
+		-- Popup menu:
+		-- PmenuKind	Popup menu: Normal item "kind".
+		-- PmenuKindSel	Popup menu: Selected item "kind".
+		-- PmenuExtra	Popup menu: Normal item "extra text".
+		-- PmenuExtraSel	Popup menu: Selected item "extra text".
+		--
+		-- Normal item
+		Pmenu            = {fg = palette.fg, bg = palette.bg1},
+		-- selected item
+		PmenuSel         = {fg = palette.fg, bg = palette.selection},
+		-- Scrollbar
+		-- PmenuSbar        = {},
+		-- Thumb of the scrollbar
+		-- PmenuThumb       = {},
 
 		Question         = {fg = palette.green}, -- |hit-enter| prompt and yes/no questions
 		-- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
@@ -116,18 +127,6 @@ function M.get(palette, config)
 		CommandMode      = {fg = palette.gray}, -- Command mode message in the cmdline
 		Warnings         = {fg = palette.yellow},
 	}
-
-	-- Options:
-	-- Nvim-Cmp style options
-	if config.contrast.popup_menu then
-		editor.Pmenu      = {fg = palette.fg, bg = palette.border} -- Popup menu: normal item.
-		editor.PmenuSbar  = {bg = palette.active} -- Popup menu: scrollbar.
-		editor.PmenuThumb = {bg = palette.fg} -- Popup menu: Thumb of the scrollbar.
-	else
-		editor.Pmenu      = {fg = palette.fg, bg = palette.contrast} -- Popup menu: normal item.
-		editor.PmenuSbar  = {bg = palette.contrast} -- Popup menu: scrollbar.
-		editor.PmenuThumb = {bg = palette.selection} -- Popup menu: Thumb of the scrollbar.
-	end
 
 	return editor
 end
