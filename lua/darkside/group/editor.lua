@@ -56,7 +56,7 @@ function M.get(palette, config)
 		NonText          = {fg = palette.disabled},
 
 		Normal           = {fg = palette.fg, bg = palette.bg}, -- normal text and background color
-		NormalFloat      = {fg = palette.fg, bg = palette.bg1}, -- normal text and background color for floating windows
+		NormalFloat      = {fg = palette.fg, bg = palette.bg}, -- normal text and background color for floating windows
 		NormalNC         = {fg = palette.fg, bg = palette.bg_nc}, -- normal text and background color
 
 
