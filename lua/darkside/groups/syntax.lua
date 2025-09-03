@@ -128,8 +128,8 @@ function M.get(palette, config)
 		jsonKeyword          = {fg = palette.fg, bold = false},
 
 		-- diff
-		diffRemoved   = {link = "DiffDelete"},
-		diffAdded     = {link = "DiffAdd"},
+		-- diffRemoved   = {link = "DiffDelete"},
+		-- diffAdded     = {link = "DiffAdd"},
 	}
 end
 

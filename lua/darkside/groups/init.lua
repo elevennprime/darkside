@@ -4,8 +4,8 @@ local config = require('darkside.config').options
 local collect = require("darkside.lib.collect")
 
 function M.from(palette)
-	local editor = require("darkside.group.editor").get(palette, config)
-	local syntax = require("darkside.group.syntax").get(palette, config)
+	local editor = require("darkside.groups.editor").get(palette, config)
+	local syntax = require("darkside.groups.syntax").get(palette, config)
 	local result = collect.deep_extend(editor, syntax)
 
 	local module_names = require("darkside.config").module_names
@@ -18,7 +18,7 @@ function M.from(palette)
 		opts.enable = opts.enable == nil and true or opts.enable
 
 		if opts.enable then
-			result = collect.deep_extend(result, require("darkside.group.modules." .. name).get(palette, config))
+			result = collect.deep_extend(result, require("darkside.groups.modules." .. name).get(palette, config))
 		end
 	end
 	return result

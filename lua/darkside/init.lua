@@ -45,7 +45,7 @@ function M.load()
     vim.g.colors_name = "darkside"
 
 	local palette = require('darkside.palette')
-	local groups = require("darkside.group").from(palette)
+	local groups = require("darkside.groups").from(palette)
 	for name, values in pairs(groups) do
 		vim.api.nvim_set_hl(0, name, values)
 	end

@@ -5,6 +5,7 @@ function M.get(palette, config)
 		ColorColumn      = {fg = palette.bg_alt, bg = palette.bg_alt}, -- used for the columns set with 'colorcolumn'
 		Conceal          = {fg = palette.disabled}, -- placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor           = {fg = palette.bg_alt, bg = palette.cursor}, -- the character under the cursor
+		-- lCursor = { fg = C.base, bg = C.text }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
 		CursorIM         = {fg = palette.bg_alt, bg = palette.cursor}, -- like Cursor, but used when in IME mode
 
 		CursorColumn     = {link = "CursorLine"}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
@@ -33,10 +34,11 @@ function M.get(palette, config)
 		FoldColumn       = {fg = palette.blue}, -- 'foldcolumn'
 
 		SignColumn       = {fg = palette.fg, bg = palette.bg_sign},
+		-- SignColumnSB = { bg = C.crust, fg = C.surface1 }, -- column where |signs| are displayed
 
 		IncSearch        = {fg = palette.title, bg = palette.selection, underline = true}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 
-		-- Substitute
+		-- Substitute = { bg = palette.selection, bold = true}, -- |:substitute| replacement text highlighting
 
 		LineNr           = {fg = palette.yellow}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		LineNrAbove      = {fg = palette.line_numbers}, -- Line number for when the relativenumber option is set, above teh cursor line.
@@ -46,8 +48,8 @@ function M.get(palette, config)
 		-- CursorLineFold
 		MatchParen       = {fg = palette.yellow, bold = true}, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		-- ModeMsg          = {fg = styles.fg}, -- 'showmode' message (e.g., "-- INSERT -- ")
-		-- MsgArea
-		-- MsgSeparator
+		-- MsgArea = {},
+		-- MsgSeparator = {},
 		MoreMsg          = {fg = palette.accent}, -- |more-prompt|
 		-- '@' at the end of the window, characters from 'showbreak' and other
 		-- characters that do not really exist in the text (e.g., ">" displayed
@@ -58,6 +60,9 @@ function M.get(palette, config)
 		Normal           = {fg = palette.fg, bg = palette.bg}, -- normal text and background color
 		NormalFloat      = {fg = palette.fg, bg = palette.bg}, -- normal text and background color for floating windows
 		NormalNC         = {fg = palette.fg, bg = palette.bg_nc}, -- normal text and background color
+		-- NormalSB = { fg = C.text, bg = C.crust }, -- normal text in non-current windows
+		FloatBorder      = {fg = palette.border, bg = palette.float}, -- floating window border
+		-- FloatTitle = { fg = C.subtext0 }, -- Title of floating windows
 
 
 		-- Popup menu:
@@ -70,10 +75,11 @@ function M.get(palette, config)
 		Pmenu            = {fg = palette.fg, bg = palette.bg},
 		-- selected item
 		PmenuSel         = {fg = palette.fg, bg = palette.selection},
-		-- Scrollbar
-		-- PmenuSbar        = {},
+
+		-- PmenuSbar = {}, -- Popup menu: scrollbar.
+
 		-- Thumb of the scrollbar
-		-- PmenuThumb       = {},
+		-- PmenuThumb = {}, -- Popup menu: Thumb of the scrollbar.
 
 		Question         = {fg = palette.green}, -- |hit-enter| prompt and yes/no questions
 		-- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
@@ -82,6 +88,7 @@ function M.get(palette, config)
 
 		Search           = {fg = palette.title, bg = palette.selection, bold = true}, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 		SpecialKey       = {fg = palette.purple}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+		-- CurSearch = {}, -- 'cursearch' highlighting: highlights the current search you're on differently
 
 		SpellBad         = {fg = palette.error, undercurl = true}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
 		SpellCap         = {fg = palette.blue, undercurl = true}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -90,6 +97,7 @@ function M.get(palette, config)
 
 		StatusLine       = {fg = palette.fg, bg = palette.bg_alt}, -- status line of current window
 		StatusLineNC     = {fg = palette.fg_alt, bg = palette.bg_alt}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+		-- TabLine = { bg = C.mantle, fg = C.surface1 }, -- tab pages line, not active tab page label
 
 		Tabline          = {fg = palette.fg},
 		TabLineFill      = {fg = palette.fg}, -- tab pages line, where there are no labels
@@ -105,16 +113,18 @@ function M.get(palette, config)
 
 		WildMenu         = {fg = palette.orange, bold = true}, -- current match in 'wildmenu' completion
 
+		VertSplit        = {fg = palette.vsp}, -- The column separating vertically split windows
+
+		-- WinBar = {},
+
 		-- For the GUI
 		-- Menu
 		-- Scrollbar
 		-- Tooltip
 
-		VertSplit        = {fg = palette.vsp}, -- The column separating vertically split windows
 
 		-- Unknown
 		NormalContrast   = {fg = palette.fg, bg = palette.bg_alt}, -- a help group for contrast fileypes
-		FloatBorder      = {fg = palette.border, bg = palette.float}, -- floating window border
 
 		StatusLineTerm   = {fg = palette.fg, bg = palette.active}, -- status line of current terminal window
 		StatusLineTermNC = {fg = palette.disabled, bg = palette.bg}, -- status lines of not-current terminal windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
