@@ -67,7 +67,7 @@ function M.get(palette, config)
 		-- PmenuExtraSel	Popup menu: Selected item "extra text".
 		--
 		-- Normal item
-		Pmenu            = {fg = palette.fg, bg = palette.bg1},
+		Pmenu            = {fg = palette.fg, bg = palette.bg},
 		-- selected item
 		PmenuSel         = {fg = palette.fg, bg = palette.selection},
 		-- Scrollbar
