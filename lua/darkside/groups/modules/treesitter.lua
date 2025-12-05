@@ -111,6 +111,10 @@ function M.get(palette, config)
 		["@text.diff.add"]         = {link = "DiffAdd"}, -- added text (for diff files)
 		["@text.diff.delete"]      = {link = "DiffDelete"}, -- deleted text (for diff files)
 
+		["@diff.plus"]       = {fg = palette.cyan}, -- added text (for diff files)
+		["@diff.minus"]      = {link = "DiffDelete"}, -- deleted text (for diff files)
+		["@diff.delta"]      = {link = "DiffDelete"}, -- deleted text (for diff files)
+
 		-- Tags
 		["@tag"]                   = {fg = palette.pink1}, -- XML tag names
 		["@tag.delimiter"]         = {fg = palette.fg}, -- XML tag attributes

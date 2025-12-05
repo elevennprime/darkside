@@ -13,14 +13,6 @@ function M.get(palette, config)
 
 		Directory        = {fg = palette.blue, bold = true}, -- directory names (and other special names in listings)
 
-		-- the some good color for text that changed
-		DiffAdd          = {fg = palette.fg, bg = palette.green}, -- diff mode: Added line
-		DiffChange       = {fg = palette.fg, bg = palette.darkblue}, -- diff mode: Changed line
-		DiffDelete       = {bg = palette.red}, -- diff mode: Deleted line
-		-- DiffText         = {fg = styles.fg, bg = styles.bg_alt}, -- diff mode: Changed text within a changed line -- DEPREACTED
-		-- DiffText         = {fg = styles.darkblue, bg = styles.fg, bold = true}, -- diff mode: Changed text within a changed line -- DEPREACTED
-		DiffText         = {fg = palette.fg, bg = palette.darkblue, bold = true, reverse = true}, -- diff mode: Changed text within a changed line
-
 		EndOfBuffer      = {fg = palette.line_numbers}, -- Set End of Buffer lines (~)
 
 		-- TermCursor
@@ -116,6 +108,22 @@ function M.get(palette, config)
 		VertSplit        = {fg = palette.vsp}, -- The column separating vertically split windows
 
 		-- WinBar = {},
+
+		-- diff
+		DiffAdd          = {fg = palette.fg, bg = palette.bg_alt}, -- diff mode: Added line
+		DiffChange       = {fg = palette.fg, bg = palette.darkblue}, -- diff mode: Changed line
+		DiffDelete       = {bg = palette.bg_alt}, -- diff mode: Deleted line
+		DiffText         = {fg = palette.fg, bg = palette.darkblue, bold = true, reverse = true}, -- diff mode: Changed text within a changed line
+
+		---
+		diffAdded   = { fg = palette.blue },
+		diffRemoved = { fg = palette.yellow },
+		diffChanged = { fg = palette.blue },
+		diffOldFile = { fg = palette.yellow },
+		diffNewFile = { fg = palette.peach },
+		diffFile = { fg = palette.blue },
+		diffLine = { fg = palette.overlay0 },
+		diffIndexLine = { fg = palette.teal },
 
 		-- For the GUI
 		-- Menu
