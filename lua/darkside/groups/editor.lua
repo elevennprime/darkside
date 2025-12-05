@@ -87,7 +87,7 @@ function M.get(palette, config)
 		SpellLocal       = {fg = palette.cyan, undercurl = true}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		SpellRare        = {fg = palette.purple, undercurl = true}, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
 
-		StatusLine       = {fg = palette.fg, bg = palette.bg_alt}, -- status line of current window
+		StatusLine       = {fg = palette.fg, bg = palette.bg1}, -- status line of current window
 		StatusLineNC     = {fg = palette.fg_alt, bg = palette.bg_alt}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		-- TabLine = { bg = C.mantle, fg = C.surface1 }, -- tab pages line, not active tab page label
 
