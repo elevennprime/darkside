@@ -140,6 +140,10 @@ function M.get(palette, config)
 		["@text.title.4.marker.markdown"] = {fg = palette.gray},
 		["@text.title.5.marker.markdown"] = {fg = palette.gray},
 		["@text.title.6.marker.markdown"] = {fg = palette.gray},
+
+		-- gitignore
+		["@string.special.path.gitignore"] = {link = "@text"},
+		["@character.special.gitignore"] = {link = "@text"},
 	}
 end
 
