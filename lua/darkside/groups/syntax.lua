@@ -130,6 +130,12 @@ function M.get(palette, config)
 		-- diff
 		-- diffRemoved   = {link = "DiffDelete"},
 		-- diffAdded     = {link = "DiffAdd"},
+
+		-- Quickfix list
+		qfLineNr = { fg = palette.line_numbers },
+		qfFileName = { fg = palette.fg },
+		qfSeparator1 = { fg = palette.line_numbers },
+		qfSeparator2 = { fg = palette.line_numbers },
 	}
 end
 
