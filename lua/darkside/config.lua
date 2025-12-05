@@ -64,6 +64,8 @@ local defaults = {
 		lsp = true,
 		treesitter = true,
 		cmp = true,
+		neogit = true,
+		gitsigns = true,
 	},
 }
 
@@ -79,6 +81,8 @@ Config.module_names = {
 	"lsp",
 	"treesitter",
 	"cmp",
+	"neogit",
+	"gitsigns",
 }
 
 Config.setup()
