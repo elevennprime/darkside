@@ -38,7 +38,7 @@ local colors = {
 	fg_alt        = '#9e9e9e',
 
 	selection     = '#484848',
-	highlight     = '#425b67',
+	highlight     = '#3A6EA5',
 
 	disabled      = '#282828',
 
@@ -53,7 +53,7 @@ local colors = {
 colors.string     = colors.green
 colors.link       = colors.blue2
 colors.comments   = '#6e6f70'
-colors.line_numbers  = '#37474f'
+colors.line_numbers  = '#444444'
 colors.error      = colors.red2
 colors.cursor     = colors.yellow
 colors.title      = '#eeffff'
