@@ -49,8 +49,9 @@ function M.get(palette, config)
 		-- also |hl-EndOfBuffer|.
 		NonText          = {fg = palette.disabled},
 
-		Normal           = {fg = palette.fg, bg = palette.bg}, -- normal text and background color
-		NormalFloat      = {fg = palette.fg, bg = palette.bg}, -- normal text and background color for floating windows
+		Normal           = {fg = palette.fg, bg = config.transparent_background and palette.none or palette.base}, -- normal text and background color
+		NormalFloat      = {fg = palette.fg, bg = (config.float.transparent and vim.o.winblend == 0) and palette.none or palette.bg1}, -- normal text and background color for floating windows
+
 		NormalNC         = {fg = palette.fg, bg = palette.none}, -- normal text and background color
 		-- NormalSB = { fg = C.text, bg = C.crust }, -- normal text in non-current windows
 		FloatBorder      = {fg = palette.border, bg = palette.none}, -- floating window border
@@ -64,7 +65,7 @@ function M.get(palette, config)
 		-- PmenuExtraSel	Popup menu: Selected item "extra text".
 		--
 		-- Normal item
-		Pmenu            = {fg = palette.fg, bg = palette.bg},
+		Pmenu            = {fg = palette.fg, bg = palette.none},
 		-- selected item
 		PmenuSel         = {fg = palette.fg, bg = palette.selection},
 
@@ -93,7 +94,7 @@ function M.get(palette, config)
 
 		Tabline          = {fg = palette.fg},
 		TabLineFill      = {fg = palette.fg}, -- tab pages line, where there are no labels
-		TablineSel       = {fg = palette.bg, bg = palette.accent}, -- tab pages line, active tab page label
+		TablineSel       = {fg = palette.none, bg = palette.accent}, -- tab pages line, active tab page label
 
 		Title            = {fg = palette.title, bold = true}, -- titles for output from ":set all", ":autocmd" etc.
 		Visual           = {fg = palette.none, bg = palette.selection}, -- Visual mode selection
@@ -135,7 +136,7 @@ function M.get(palette, config)
 		NormalContrast   = {fg = palette.fg, bg = palette.bg_alt}, -- a help group for contrast fileypes
 
 		StatusLineTerm   = {fg = palette.fg, bg = palette.active}, -- status line of current terminal window
-		StatusLineTermNC = {fg = palette.disabled, bg = palette.bg}, -- status lines of not-current terminal windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+		StatusLineTermNC = {fg = palette.disabled, bg = palette.none}, -- status lines of not-current terminal windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		-- ToolbarLine   = {fg = styles.fg, bg = styles.bg_alt},
 		-- ToolbarButton = {fg = styles.fg, bold = true},
 		NormalMode       = {fg = palette.accent}, -- Normal mode message in the cmdline

@@ -1,6 +1,11 @@
 local M = {
 	default_options = {
 		compile_path = vim.fn.stdpath "cache" .. "/darkside",
+		transparent_background = false,
+		float = {
+			transparent = true,
+		},
+		default_modules = true,
 		modules = {
 			diagnostic = true,
 			lsp_semantic = true,
@@ -45,6 +50,9 @@ function M.setup(user_conf)
 
 	user_conf = user_conf or {}
 
+	M.options = vim.tbl_deep_extend("keep", user_conf, M.default_options)
+
+	-- Get cached hash
 	local cached_path = M.options.compile_path .. M.path_sep .. "cached"
 	local file = io.open(cached_path)
 	local cached = nil
@@ -53,6 +61,7 @@ function M.setup(user_conf)
 		file:close()
 	end
 
+	-- Compute the current hash
 	local git_path = debug.getinfo(1).source:sub(2, -24) .. ".git"
 	local git = vim.fn.getftime(git_path)
 	local hash = require("darkside.lib.hashing").hash(user_conf)
@@ -61,6 +70,7 @@ function M.setup(user_conf)
 		.. (vim.o.pumblend == 0 and 1 or 0) -- :h pumblend
 
 
+	-- Recompile if hash changed
 	if cached ~= hash then
 		require("darkside.lib.compiler").complier()
 		file = io.open(cached_path, "wb")
