@@ -1,53 +1,130 @@
-local M = {}
+local M = {
+	default_options = {
+		compile_path = vim.fn.stdpath "cache" .. "/darkside",
+		contrast = {
+			-- Enable contrast for sidebar-like windows (for example Nvim-Tree)
+			sidebars = false,
+			-- Enable contrast for floating windows
+			floating_windows = false,
+			-- Enable darker background for the cursor line
+			cursor_line = false,
+			-- Enable contrast background for line numbers
+			line_numbers = false,
+			-- Enable contrast background the sign column
+			sign_column = false,
+			-- Enable darker background for non-current windows
+			non_current_windows = false,
+			-- Enable lighter background for the popup menu
+			popup_menu = false,
+		},
 
-local config = require('darkside.config').options
+		italics = {
+			comments = false,
+			strings = false,
+			keywords = false,
+			functions = false,
+			variables = false,
+		},
 
--- Only define Darkside if it's the active colorshceme
-function M.onColorScheme()
-  if vim.g.colors_name ~= "darkside" then
-    vim.cmd [[autocmd! Darkside]]
-    vim.cmd [[augroup! Darkside]]
-	-- vim.api.nvim_del_augroup_by_name("Darkside")
-  end
-end
+		-- Select which windows get the contrast background
+		contrast_filetypes = {},
 
--- Change the background for the terminal and packer windows
-M.contrast = function ()
-	local group = vim.api.nvim_create_augroup("Darkside", {clear = true})
-	vim.api.nvim_create_autocmd("ColorScheme", {callback = function ()
-		require("darkside.util").onColorScheme()
-	end, group = group})
+		disable = {
+			colored_cursor = true,
+			-- Disable window split borders
+			borders = false,
+			-- Disable setting the background color
+			background = true,
+			-- Disable setting the terminal colors
+			term_colors = true,
+			-- Make end-of-buffer lines invisible
+			eob_lines = true
+		},
 
-	for _, sidebar in ipairs(config.contrast_filetypes) do
-		if sidebar == "terminal" then
-			vim.api.nvim_create_autocmd("TermOpen", {
-				command = "setlocal winhighlight=Normal:NormalContrast,SignColumn:NormalContrast",
-				group = group,
-			})
-		else
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = sidebar,
-				command = "setlocal winhighlight=Normal:NormalContrast,SignColumn:SignColumnFloat",
-				group = group,
-			})
-		end
-	end
-end
+		high_visibility = {
+			-- Higher contrast text for lighter style
+			lighter = false,
+			-- Higher contrast text for darker style
+			darker = false
+		},
 
--- Load the theme
+		-- Lualine style (can be 'stealth' or 'default')
+		lualine_style = 'default',
+
+		-- define custom highlights
+		custom_highlights = {},
+
+		-- Load parts of the theme asyncronously for faster startup
+		async_loading = true,
+
+
+		modules = {
+			diagnostic = true,
+			lsp_semantic = true,
+			lsp = true,
+			treesitter = true,
+			cmp = true,
+			neogit = true,
+			gitsigns = true,
+		},
+
+	},
+	path_sep = jit and (jit.os == "Windows" and "\\" or "/") or package.config:sub(1, 1),
+}
+
+M.options = vim.tbl_deep_extend("force", {}, M.default_options, M.options or {})
+
+M.module_names = {
+	"diagnostic",
+	"lsp_semantic",
+	"lsp",
+	"treesitter",
+	"cmp",
+	"neogit",
+	"gitsigns",
+}
+
+local did_setup = false
 function M.load()
-    -- Set the theme environment
-    vim.cmd("hi clear")
-    if vim.fn.exists("syntax_on") then vim.cmd("syntax reset") end
+	if not did_setup then M.setup() end
 
-    vim.opt.background = "dark"
-    vim.opt.termguicolors = true
-    vim.g.colors_name = "darkside"
+	local compiled_path = M.options.compile_path .. M.path_sep .. "darkside"
+	local f = loadfile(compiled_path)
+	if not f then
+		M.compile()
+		f = assert(loadfile(compiled_path), "could not load cache")
+	end
+	f()
+end
 
-	local palette = require('darkside.palette')
-	local groups = require("darkside.groups").from(palette)
-	for name, values in pairs(groups) do
-		vim.api.nvim_set_hl(0, name, values)
+function M.setup(user_conf)
+	did_setup = true
+
+	user_conf = user_conf or {}
+
+	local cached_path = M.options.compile_path .. M.path_sep .. "cached"
+	local file = io.open(cached_path)
+	local cached = nil
+	if file then
+		cached = file:read()
+		file:close()
+	end
+
+	local git_path = debug.getinfo(1).source:sub(2, -24) .. ".git"
+	local git = vim.fn.getftime(git_path)
+	local hash = require("darkside.lib.hashing").hash(user_conf)
+		.. (git == -1 and git_path or git) -- no .git in /nix/store -> cache path
+		.. (vim.o.winblend == 0 and 1 or 0) -- :h winblend
+		.. (vim.o.pumblend == 0 and 1 or 0) -- :h pumblend
+
+
+	if cached ~= hash then
+		require("darkside.lib.compiler").complier()
+		file = io.open(cached_path, "wb")
+		if file then
+			file:write(hash)
+			file:close()
+		end
 	end
 end
 

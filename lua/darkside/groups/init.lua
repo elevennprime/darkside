@@ -1,6 +1,6 @@
 local M = {}
 
-local config = require('darkside.config').options
+local config = require('darkside').options
 local collect = require("darkside.lib.collect")
 
 function M.from(palette)
@@ -8,7 +8,7 @@ function M.from(palette)
 	local syntax = require("darkside.groups.syntax").get(palette, config)
 	local result = collect.deep_extend(editor, syntax)
 
-	local module_names = require("darkside.config").module_names
+	local module_names = require("darkside").module_names
 	for _, name in ipairs(module_names) do
 		local kind = type(config.modules[name])
 		local opts = kind == "boolean" and { enable = config.modules[name] }
