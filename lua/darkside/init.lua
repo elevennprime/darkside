@@ -1,3 +1,4 @@
+---@type Darkside
 local M = {
 	default_options = {
 		compile_path = vim.fn.stdpath "cache" .. "/darkside",
@@ -31,6 +32,7 @@ function M.load()
 	f()
 end
 
+---@type fun(user_conf: DarksideOptions?)
 function M.setup(user_conf)
 	did_setup = true
 
