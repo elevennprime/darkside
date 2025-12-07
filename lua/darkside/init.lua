@@ -8,8 +8,11 @@ local M = {
 		},
 		default_modules = true,
 		modules = {
+			-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 			cmp = true,
+			-- [neogit](https://github.com/NeogitOrg/neogit)
 			neogit = true,
+			-- [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 			gitsigns = true,
 		},
 
