@@ -6,7 +6,7 @@
 ---@class DarksideOptions
 -- By default darkside writes the compiled results into the system's cache directory.
 -- You can change the cache dir by changing this value.
----@field compile_path string?
+---@field compile_path string
 -- Whether to enable transparency.
 ---@field transparent_background boolean?
 ---@field float DSFloatOpts?
