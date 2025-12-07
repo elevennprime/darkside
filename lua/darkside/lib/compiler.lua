@@ -10,8 +10,14 @@ local M = {}
 local function inspect(t)
 	local list = {}
 	for k, v in pairs(t) do
-		local q = type(v) == "string" and [["]] or ""
-		table.insert(list, fmt([[%s = %s%s%s]], k, q, v, q))
+		local tv = type(v)
+		if tv == "string" then
+			table.insert(list, fmt([[%s = "%s"]], k, v))
+		elseif tv == "table" then
+			table.insert(list, fmt([[%s = %s]], k, inspect(v)))
+		else
+			table.insert(list, fmt([[%s = %s]], k, tostring(v)))
+		end
 	end
 
 	table.sort(list)
@@ -37,18 +43,13 @@ function M.complier()
 		),
 	}
 
-	for name, values in pairs(groups) do
-		if values.link and values.link ~= "" then
-			table.insert(lines, fmt([[h(0, "%s", { link = "%s" })]], name, values.link))
-		else
-			local op = parse_style(values.style)
-			op.bg = values.bg
-			op.fg = values.fg
-			op.sp = values.sp
-			table.insert(lines, fmt([[h(0, "%s", %s)]], name, inspect(op)))
+	for group, color in pairs(groups) do
+		if color.style then
+			for _, style in pairs(color.style) do color[style] = true end
 		end
+		color.style = nil
+		table.insert(lines, fmt([[h(0, "%s", %s)]], group, inspect(color)))
 	end
-
 	table.insert(lines, "end)")
 
 	if vim.fn.isdirectory(opts.compile_path) == 0 then vim.fn.mkdir(opts.compile_path, "p") end
