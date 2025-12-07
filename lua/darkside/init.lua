@@ -25,7 +25,7 @@ function M.load()
 	local compiled_path = M.options.compile_path .. M.path_sep .. "darkside"
 	local f = loadfile(compiled_path)
 	if not f then
-		M.compile()
+		require("darkside.lib.compiler").complier()
 		f = assert(loadfile(compiled_path), "could not load cache")
 	end
 	f()
